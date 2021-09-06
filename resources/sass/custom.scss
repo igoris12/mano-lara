@@ -1,0 +1,29 @@
+.card-header {
+    color: blue;
+    font-style: italic;
+}
+
+.list-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__content {
+        margin-bottom: 15px;
+        display: flex;
+        font-size: large;
+        flex-direction: column;
+        small {
+            color: gray;
+            font-style: italic;
+        }
+        input {
+            margin-bottom: 15px;
+        }
+    }
+    &__buttons {
+        display: flex;
+    }
+    .btn {
+        margin-right: 10px;
+    }
+}
