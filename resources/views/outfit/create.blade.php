@@ -11,17 +11,17 @@
                     <form method="POST" action="{{route('outfit.store')}}">
                         <div class="list-block__content">
                             <label  class="form-label">Type</label>
-                            <input type="text" class="form-control" name="outfit_type">
+                            <input type="text" class="form-control" name="outfit_type" value="{{old('outfit_type')}}">
                             <label  class="form-label">Color</label>
-                            <input type="text" name="outfit_color" class="form-control">
+                            <input type="text" name="outfit_color" class="form-control" value="{{old('outfit_color')}}">
                             <label  class="form-label">Size</label>
-                            <input type="text" name="outfit_size" class="form-control">
+                            <input type="text" name="outfit_size" class="form-control" value="{{old('outfit_size')}}">
                             <label  class="form-label">About</label>
-                            <textarea name="outfit_about"></textarea class="form-control">
+                            <textarea name="outfit_about" id="summernote">{{old('outfit_about')}}</textarea class="form-control" >
                             <label  class="form-label">Select master</label>
                             <select name="master_id"  class="form-control">
                                 @foreach ($masters as $master)
-                                    <option value="{{$master->id}}">{{$master->name}} {{$master->surname}}</option>
+                                    <option value="{{$master->id}}"  @if(old('master_id') == $master->id) selected @endif>{{$master->name}} {{$master->surname}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -35,6 +35,11 @@
        </div>
    </div>
 </div>
+<script>
+$(document).ready(function() {
+   $('#summernote').summernote();
+ });
+</script>
 @endsection
 
 

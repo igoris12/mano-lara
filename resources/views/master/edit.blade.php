@@ -11,9 +11,9 @@
                   <form method="POST" action="{{route('master.update',$master)}}">
                     <div class="list-block__content">
                         <label  class="form-label">Name</label>
-                        <input type="text" class="form-control" name="master_name" value="{{$master->name}}">
+                        <input type="text" class="form-control" name="master_name" value="{{old('master_name', $master->name)}}">
                         <label  class="form-label">Surname</label>
-                        <input type="text" class="form-control" name="master_surname" value="{{$master->surname}}">
+                        <input type="text" class="form-control" name="master_surname" value="{{old('master_surname', $master->surname)}}">
                     </div>
                     <div class="list-block__buttons">
                         <button type="submit" class="btn btn-info">Edit</button>
