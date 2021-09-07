@@ -5,7 +5,9 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">Outfits</div>
+               <div class="card-header">
+                   <h3>Outfits</h3>
+                </div>
 
                <div class="card-body">
                    <ul class="list-group">
@@ -13,7 +15,7 @@
                             <li class="list-group-item">
                                  <div class="list-block">
                                      <div class="list-block__content">
-                                        <p>{{$outfit->color}} {{$outfit->type}}</p>
+                                        <p>{{$outfit->type}}  <i>Color:</i> {{$outfit->color}}   <i>Size:</i>{{$outfit->size}}</p>
                                         <small>{{$outfit->getMaster->name}} {{$outfit->getMaster->surname}}</small>
                                     </div>
                                     <div class="list-block__buttons">

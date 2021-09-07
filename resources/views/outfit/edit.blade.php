@@ -17,7 +17,7 @@
                             <label  class="form-label">Size</label>
                             <input type="text" name="outfit_size" class="form-control" value="{{old('outfit_size',$outfit->size)}}">
                             <label  class="form-label">About</label>
-                            <textarea name="outfit_about" id="summernote">{{old('outfit_about', $outfit->about)}},</textarea>
+                            <textarea name="outfit_about" id="summernote">{{old('outfit_about', $outfit->about)}}</textarea>
                             <label  class="form-label">Select master</label>
                             <select name="master_id"  class="form-control">
                                 @foreach ($masters as $master)
