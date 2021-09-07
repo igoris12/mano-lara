@@ -1,6 +1,22 @@
 .card-header {
     color: blue;
     font-style: italic;
+    fieldset {
+        border: 2px solid black;
+        padding: 15px;
+        text-align: right;
+        display: flex;
+
+        legend {
+            display: inline-block;
+            width: auto;
+            margin: 5px;
+            padding: 10px;
+        }
+        .block {
+            margin: 10px;
+        }
+    }
 }
 
 .list-block {

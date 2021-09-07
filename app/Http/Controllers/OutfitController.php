@@ -13,10 +13,39 @@ class OutfitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $outfits = Outfit::all();
-        return view('outfit.index', ['outfits' => $outfits]);
+    public function index(Request $request)
+    {   
+        $masters = Master::orderBy('surname')->get();
+        if ($request->sort) {
+            if ('size' == $request->sort && 'asc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('size')->get();
+            }
+            if ('size' == $request->sort && 'desc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('size', 'desc')->get();
+            }
+            if ('color' == $request->sort && 'asc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('color')->get();
+            }
+            if ('color' == $request->sort && 'desc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('color', 'desc')->get();
+            }
+            if ('type' == $request->sort && 'asc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('type')->get();
+            }
+            if ('type' == $request->sort && 'desc' == $request->sortDir) {
+               $outfits = Outfit::orderBy('type', 'desc')->get();
+            }
+        }
+        else {
+          $outfits = Outfit::all();
+        }
+
+        
+        
+        return view('outfit.index', ['outfits' => $outfits,
+        'sortDir' => $request->sortDir,
+        'masters' => $masters
+        ]);
 
     }
 
