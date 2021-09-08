@@ -35,16 +35,22 @@ class OutfitController extends Controller
             if ('type' == $request->sort && 'desc' == $request->sortDir) {
                $outfits = Outfit::orderBy('type', 'desc')->get();
             }
+            else {
+              $outfits = Outfit::all();
+            }
         }
-        else {
-          $outfits = Outfit::all();
+        else if($request->filter && 'master' == $request->filter) {
+            $outfits = Outfit::Where('master_id', $request->master_id)->get();
         }
-
+            else {
+              $outfits = Outfit::all();
+            }
         
         
         return view('outfit.index', ['outfits' => $outfits,
         'sortDir' => $request->sortDir,
-        'masters' => $masters
+        'masters' => $masters,
+        'master_id' => $request->master_id ?? '0'
         ]);
 
     }

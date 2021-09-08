@@ -45,12 +45,26 @@
                             <legend>Filter</legend>
                             <div class="block">
                                 <select class="form-control" name="master_id">
-                                    <option value="0" disabled selected>Select Master</option>
+                                    <option value="0" disabled selected >Select Master</option>
                                     @foreach ($masters as $master)
-                                        <option value="{{$master->id}}" >{{$master->name}} {{$master->surname}}</option>
+                                       <option value="{{$master->id}}" @if($master_id == $master->id) selected @endif>{{$master->name}} {{$master->surname}}</option>
                                     @endforeach
                                 </select>
                                 <small class="form-text text-muted">Select master from the list.</small>
+                            </div>
+                            <div class="block">
+                                <button type="submit" class="btn btn-primary" name="filter" value="master">Filter</button>
+                                <a href="{{route('outfit.index')}}" class="btn btn-danger">Reset</a>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    </form>
+                    <form action="{{route('outfit.index')}}" method="get">
+                        <fieldset >
+                            <legend>Search</legend>
+                            <div class="block">
+                               <input type="text" value="" name="search">
                             </div>
                             <div class="block">
                                 <button type="submit" class="btn btn-primary" name="filter" value="master">Filter</button>
