@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 class MasterController extends Controller
 {
+      const RESULTS_IN_PAGE = 5;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,7 @@ class MasterController extends Controller
      */
     public function index()
     {
-        $masters = Master::all();
+        $masters = Master::paginate(self::RESULTS_IN_PAGE)->withQueryString();
         return view('master.index', ['masters' => $masters]);
     }
 

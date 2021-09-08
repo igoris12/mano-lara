@@ -64,10 +64,11 @@
                         <fieldset >
                             <legend>Search</legend>
                             <div class="block">
-                               <input type="text" value="" name="search">
+                                <input class="form-control" type="text" placeholder="Search" name="s" value="">
+                                <small class="form-text text-muted">Search in our Fashion House</small>
                             </div>
                             <div class="block">
-                                <button type="submit" class="btn btn-primary" name="filter" value="master">Filter</button>
+                                <button type="submit" class="btn btn-primary" name="search" value="all">Filter</button>
                                 <a href="{{route('outfit.index')}}" class="btn btn-danger">Reset</a>
                             </div>
                         </fieldset>
@@ -75,12 +76,14 @@
                 </div>
 
                <div class="card-body">
+                    <div class="mt-3">{{$outfits->links()}}</div>
+
                    <ul class="list-group">
                         @foreach ($outfits as $outfit)
                             <li class="list-group-item">
                                  <div class="list-block">
                                      <div class="list-block__content">
-                                        <p>{{$outfit->type}}  <i>Color:</i> {{$outfit->color}}   <i>Size: </i>{{$outfit->size}}</p>
+                                        <p><b>{{$outfit->type}}</b>  <i>Color:</i> {{$outfit->color}}   <i>Size: </i>{{$outfit->size}}</p>
                                         <small>{{$outfit->getMaster->name}} {{$outfit->getMaster->surname}}</small>
                                     </div>
                                     <div class="list-block__buttons">
@@ -94,6 +97,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    <div class="mt-3">{{$outfits->links()}}</div>
                </div>
            </div>
        </div>

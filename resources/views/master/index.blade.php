@@ -8,6 +8,7 @@
                <div class="card-header">Masters</div>
 
                <div class="card-body">
+                   <div>{{$masters->links()}}</div>
                    <ul class="list-group">
                        @foreach ($masters as $master)
                         <li class="list-group-item">
@@ -29,8 +30,9 @@
                                 </div>
                             </div>
                         </li>
+                        @endforeach
                    </ul>
-                  @endforeach
+                   <div class="mt-3">{{$masters->links()}}</div>
                </div>
            </div>
        </div>

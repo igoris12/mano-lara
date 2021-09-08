@@ -8,6 +8,9 @@ use App\Models\Master;
 use Validator;
 class OutfitController extends Controller
 {
+
+    const RESULTS_IN_PAGE = 9;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,38 +18,39 @@ class OutfitController extends Controller
      */
     public function index(Request $request)
     {   
-        $masters = Master::orderBy('surname')->get();
+        
+        $masters = Master::orderBy('surname')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         if ($request->sort) {
             if ('size' == $request->sort && 'asc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('size')->get();
+               $outfits = Outfit::orderBy('size')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             if ('size' == $request->sort && 'desc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('size', 'desc')->get();
+               $outfits = Outfit::orderBy('size', 'desc')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             if ('color' == $request->sort && 'asc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('color')->get();
+               $outfits = Outfit::orderBy('color')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             if ('color' == $request->sort && 'desc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('color', 'desc')->get();
+               $outfits = Outfit::orderBy('color', 'desc')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             if ('type' == $request->sort && 'asc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('type')->get();
+               $outfits = Outfit::orderBy('type')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             if ('type' == $request->sort && 'desc' == $request->sortDir) {
-               $outfits = Outfit::orderBy('type', 'desc')->get();
+               $outfits = Outfit::orderBy('type', 'desc')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
             else {
               $outfits = Outfit::all();
             }
         }
         else if($request->filter && 'master' == $request->filter) {
-            $outfits = Outfit::Where('master_id', $request->master_id)->get();
+            $outfits = Outfit::Where('master_id', $request->master_id)->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         }
         else if($request->search && 'all' == $request->search) {
-            $outfits = Outfit::Where('color', 'like', '%'.$request->s.'%')->get();
+            $outfits = Outfit::Where('color', 'like', '%'.$request->s.'%')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         }
             else {
-              $outfits = Outfit::all();
+              $outfits = Outfit::paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
         
         
