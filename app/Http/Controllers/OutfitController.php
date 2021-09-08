@@ -42,6 +42,9 @@ class OutfitController extends Controller
         else if($request->filter && 'master' == $request->filter) {
             $outfits = Outfit::Where('master_id', $request->master_id)->get();
         }
+        else if($request->search && 'all' == $request->search) {
+            $outfits = Outfit::Where('color', 'like', '%'.$request->s.'%')->get();
+        }
             else {
               $outfits = Outfit::all();
             }
