@@ -87,6 +87,7 @@
                                         <small>{{$outfit->getMaster->name}} {{$outfit->getMaster->surname}}</small>
                                     </div>
                                     <div class="list-block__buttons">
+                                        <a href="{{route('outfit.show',[$outfit])}}" class="btn btn-info">Show</a>
                                         <a href="{{route('outfit.edit',[$outfit])}}" class="btn btn-primary">Info</a>
                                         <form method="POST" action="{{route('outfit.destroy', [$outfit])}}">
                                             <button type="submit" class="btn btn-danger">DELETE</button>

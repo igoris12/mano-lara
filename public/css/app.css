@@ -10046,3 +10046,24 @@ h3 {
 .list-block .btn {
   margin-right: 10px;
 }
+
+.outfit-container__size {
+  font-size: larger;
+}
+.outfit-container__color {
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+  border: 2px solid black;
+}
+.outfit-container__about {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
