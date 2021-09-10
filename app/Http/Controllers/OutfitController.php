@@ -92,6 +92,7 @@ class OutfitController extends Controller
            'outfit_size' => ['required', 'integer', 'min:5' ,'max:21'],
            'outfit_about' => ['required'],
            'master_id' => ['required', 'integer','min:1'],
+           'outfit_photo' => ['sometimes', 'image']
 
        ]
 
@@ -102,13 +103,31 @@ class OutfitController extends Controller
        }
 
         $outfit = new Outfit;
+
+       $file = $request->file('outfit_photo');
+
+       if ($file) {
+            $ext = $file->getClientOriginalExtension();
+            $name = rand(1000000, 9999999).'_'.rand(1000000, 9999999);
+            $name = $name.'.'.$ext;
+            $destinationPath = public_path().'/img/';
+            $file->move($destinationPath, $name);
+            $outfit->photo = asset('/img/'.$name);
+
+       }
+
+
+
         $outfit->type = $request->outfit_type;
         $outfit->color = $request->outfit_color;
         $outfit->size = $request->outfit_size;
         $outfit->about = $request->outfit_about;
         $outfit->master_id = $request->master_id;
+
         $outfit->save();
-        return redirect()->route('outfit.index')->with('success_message', 'New outfit.');
+        return redirect()
+        ->route('outfit.index')
+        ->with('success_message', 'New outfit.');
 
 
     }
@@ -153,6 +172,7 @@ class OutfitController extends Controller
            'outfit_size' => ['required', 'integer', 'min:5' ,'max:21'],
            'outfit_about' => ['required'],
            'master_id' => ['required', 'integer','min:1'],
+           'outfit_photo' => ['sometimes', 'image']
 
        ]
 
@@ -161,6 +181,39 @@ class OutfitController extends Controller
            $request->flash();
            return redirect()->back()->withErrors($validator);
        }
+
+
+$file = $request->file('outfit_photo');
+       if ($file) {
+           $ext = $file->getClientOriginalExtension();
+           $name = rand(1000000, 9999999).'_'.rand(1000000, 9999999);
+           $name = $name.'.'.$ext;
+           $destinationPath = public_path().'/img/';
+           $file->move($destinationPath, $name);
+
+            $oldPhoto = $outfit->photo ?? '###';
+            $outfit->photo = asset('/img/'.$name);
+
+            $oldName = explode('/', $oldPhoto);
+            $oldName = array_pop($oldName);
+
+             if (file_exists($destinationPath.$oldName)){
+                 unlink($destinationPath.$oldName);
+            }
+       }
+
+        if ($request->outfit_photo_delete) { 
+            $destinationPath = public_path().'/img/';
+            $oldPhoto = $outfit->photo ?? '###';
+            $outfit->photo = null;
+
+            $oldName = explode('/', $oldPhoto);
+            $oldName = array_pop($oldName);
+             if (file_exists($destinationPath.$oldName)){
+                 unlink($destinationPath.$oldName);
+            }
+             
+         }
 
         $outfit->type = $request->outfit_type;
         $outfit->color = $request->outfit_color;
@@ -179,6 +232,16 @@ class OutfitController extends Controller
      */
     public function destroy(Outfit $outfit)
     {
+
+        $destinationPath = public_path().'/img/';
+        $oldPhoto = $outfit->photo ?? '###';
+        $outfit->photo = null;
+
+        $oldName = explode('/', $oldPhoto);
+        $oldName = array_pop($oldName);
+            if (file_exists($destinationPath.$oldName)){
+                unlink($destinationPath.$oldName);
+        }
         $outfit->delete();
         return redirect()->route('outfit.index')->with('success_message', 'Outfit was deleted.');
 

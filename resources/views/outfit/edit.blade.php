@@ -21,8 +21,8 @@
 
                              
                             <label  class="form-label mt-3 ">Photo</label>
-                            <div class=" mb-3">
-                                @if($outfit->photo)
+                            <div class=" mb-3 editImg">
+                                @if($outfit->photo )
                                 <img src="{{$outfit->photo}}" alt="{{$outfit->type}}">
                                 @else
                                 <img src="{{asset('img/noImage.png')}}" alt="{{$outfit->type}}">
@@ -31,6 +31,10 @@
                             <div class="imgCheckbox">
                                 <input type="checkbox" class="form-check-input" name="outfit_photo_delete" id="df">
                                 <label for="df">Delete photo</label>
+                            </div>
+                            <div class="mb-3">
+                                <input type="file" class="form-control" name="outfit_photo">
+                                <small class="form-text text-muted">Outfit image.</small>
                             </div>
 
                             <label  class="form-label">Select master</label>

@@ -45,7 +45,7 @@
 
     &__img {
         img {
-            height: 200;
+            height: 200px;
             width: auto;
         }
     }
@@ -76,4 +76,11 @@
 
 .imgCheckbox {
     margin-left: 40px;
+}
+
+.editImg {
+    img {
+        height: 200px;
+        width: auto;
+    }
 }

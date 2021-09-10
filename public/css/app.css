@@ -10047,7 +10047,7 @@ h3 {
   margin-right: 10px;
 }
 .list-block__img img {
-  height: 200;
+  height: 200px;
   width: auto;
 }
 
@@ -10074,4 +10074,9 @@ h3 {
 
 .imgCheckbox {
   margin-left: 40px;
+}
+
+.editImg img {
+  height: 200px;
+  width: auto;
 }
