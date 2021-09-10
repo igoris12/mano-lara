@@ -8,7 +8,7 @@
                <div class="card-header">Outfit info</div>
 
                <div class="card-body">
-                    <form method="POST" action="{{route('outfit.update',[$outfit])}}">
+                    <form method="POST" action="{{route('outfit.update',[$outfit])}}"  enctype="multipart/form-data">
                         <div class="list-block__content">
                             <label  class="form-label">Type</label>
                             <input type="text" class="form-control" name="outfit_type" value="{{old('outfit_type', $outfit->type)}}">
@@ -18,6 +18,21 @@
                             <input type="text" name="outfit_size" class="form-control" value="{{old('outfit_size',$outfit->size)}}">
                             <label  class="form-label">About</label>
                             <textarea name="outfit_about" id="summernote">{{old('outfit_about', $outfit->about)}}</textarea>
+
+                             
+                            <label  class="form-label mt-3 ">Photo</label>
+                            <div class=" mb-3">
+                                @if($outfit->photo)
+                                <img src="{{$outfit->photo}}" alt="{{$outfit->type}}">
+                                @else
+                                <img src="{{asset('img/noImage.png')}}" alt="{{$outfit->type}}">
+                                @endif
+                            </div>
+                            <div class="imgCheckbox">
+                                <input type="checkbox" class="form-check-input" name="outfit_photo_delete" id="df">
+                                <label for="df">Delete photo</label>
+                            </div>
+
                             <label  class="form-label">Select master</label>
                             <select name="master_id"  class="form-control">
                                 @foreach ($masters as $master)

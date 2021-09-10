@@ -42,6 +42,13 @@
     .btn {
         margin-right: 10px;
     }
+
+    &__img {
+        img {
+            height: 200;
+            width: auto;
+        }
+    }
 }
 
 .outfit-container {
@@ -65,4 +72,8 @@
         border: 1px solid black;
         border-radius: 5px;
     }
+}
+
+.imgCheckbox {
+    margin-left: 40px;
 }

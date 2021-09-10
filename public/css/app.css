@@ -10046,6 +10046,10 @@ h3 {
 .list-block .btn {
   margin-right: 10px;
 }
+.list-block__img img {
+  height: 200;
+  width: auto;
+}
 
 .outfit-container__size {
   font-size: larger;
@@ -10066,4 +10070,8 @@ h3 {
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+.imgCheckbox {
+  margin-left: 40px;
 }

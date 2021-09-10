@@ -82,13 +82,20 @@
                         @foreach ($outfits as $outfit)
                             <li class="list-group-item">
                                  <div class="list-block">
-                                     <div class="list-block__content">
+                                    <div class="list-block__content">
+                                        <div class="list-block__img">
+                                            @if ($outfit->photo)
+                                            <img src="{{$outfit->photo}}" alt="{{$outfit->type}}">
+                                            @else
+                                            <img src="{{asset('img/noImage.png')}}" alt="{{$outfit->type}}">
+                                            @endif
+                                        </div>
                                         <p><b>{{$outfit->type}}</b>  <i>Color:</i> {{$outfit->color}}   <i>Size: </i>{{$outfit->size}}</p>
                                         <small>{{$outfit->getMaster->name}} {{$outfit->getMaster->surname}}</small>
                                     </div>
                                     <div class="list-block__buttons">
                                         <a href="{{route('outfit.show',[$outfit])}}" class="btn btn-info">Show</a>
-                                        <a href="{{route('outfit.edit',[$outfit])}}" class="btn btn-primary">Info</a>
+                                        <a href="{{route('outfit.edit',[$outfit])}}" class="btn btn-primary">Edit</a>
                                         <form method="POST" action="{{route('outfit.destroy', [$outfit])}}">
                                             <button type="submit" class="btn btn-danger">DELETE</button>
                                             @csrf

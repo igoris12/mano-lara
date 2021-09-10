@@ -8,7 +8,7 @@
                <div class="card-header">New outfit</div>
 
                <div class="card-body">
-                    <form method="POST" action="{{route('outfit.store')}}">
+                    <form method="POST" action="{{route('outfit.store')}}" enctype="multipart/form-data">
                         <div class="list-block__content">
                             <label  class="form-label">Type</label>
                             <input type="text" class="form-control" name="outfit_type" value="{{old('outfit_type')}}">
@@ -18,6 +18,11 @@
                             <input type="text" name="outfit_size" class="form-control" value="{{old('outfit_size')}}">
                             <label  class="form-label">About</label>
                             <textarea name="outfit_about" id="summernote">{{old('outfit_about')}}</textarea class="form-control" >
+                            
+                            <label  class="form-label mt-3 ">Photo</label>
+                            <input type="file" class="form-control" name="outfit_photo" >
+                            <small class="form-text text-muted mb-3">Outfit photo</small>
+                            
                             <label  class="form-label">Select master</label>
                             <select name="master_id"  class="form-control">
                                 @foreach ($masters as $master)

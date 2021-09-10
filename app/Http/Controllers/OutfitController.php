@@ -52,7 +52,7 @@ class OutfitController extends Controller
             $outfits = Outfit::Where('color', 'like', '%'.$request->s.'%')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         }
             else {
-              $outfits = Outfit::paginate(self::RESULTS_IN_PAGE)->withQueryString();
+                $outfits = Outfit::orderBy('created_at', 'desc')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
             }
         
         
